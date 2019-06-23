@@ -1,4 +1,4 @@
-(ns clj-sql-pred.core
+(ns sqlpred.core
   (:require [clojure.string                       :as str]
             [loom.graph                           :as loom]
             #?(:clj [instaparse.core :as insta :refer [defparser]]

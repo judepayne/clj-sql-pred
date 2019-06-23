@@ -7,7 +7,7 @@ allowed sql keywords: `and, or, =, not, in, >, >=, <, <=`
 
 ### Clojars
 
-    [clj-sql-pred "0.1.1"]
+    [clj-sql-pred "0.1.2"]
 
 
 ### Example usage:

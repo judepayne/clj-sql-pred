@@ -1,4 +1,4 @@
-(defproject clj-sql-pred "0.1.1"
+(defproject clj-sql-pred "0.1.2"
   :description "Convert simple sql statements to predicates for filtering collections of Clojure/ Clojurescript maps"
   :url "https://github.com/judepayne/clj-sql-pred"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"

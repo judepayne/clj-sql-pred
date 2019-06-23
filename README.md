@@ -5,36 +5,40 @@ The `sql-pred` function in the `core` namespace takes a sql like string and retu
 
 allowed sql keywords: `and, or, =, not, in, >, >=, <, <=`
 
+### Clojars
+
+    [clj-sql-pred "0.1.1"]
+
+
 ### Example usage:
 
-    clj-sql-pred.core> (filter (sql-pred "c = 20" :keywordize-keys? true) coll)
-    {:term :c, :op =, :value 20}
-    {:term :c, :op =, :value 20}
-    ({:a "clouds", :c 20})
-    clj-sql-pred.core> (filter (sql-pred "c = 20" :keywordize-keys? true) coll)
-    {:term :c, :op =, :value 20}
-    {:term :c, :op =, :value 20}
-    ({:a "clouds", :c 20})
-    clj-sql-pred.core> (filter (sql-pred "c = 20" :keywordize-keys? true) coll)
-    ({:a "clouds", :c 20})
     clj-sql-pred.core> (def coll [{:a "clouds" :c 20} {:a "trains" :b "red" :c 35}])
     #'clj-sql-pred.core/coll
+    
     clj-sql-pred.core> (filter (sql-pred "c = 20" :keywordize-keys? true) coll)
     ({:a "clouds", :c 20})
+    
     clj-sql-pred.core> (filter (sql-pred "c > 20" :keywordize-keys? true) coll)
     ({:a "trains", :b "red", :c 35})
+    
     clj-sql-pred.core> (filter (sql-pred "c > 19 and c < 50" :keywordize-keys? true) coll)
     ({:a "clouds", :c 20} {:a "trains", :b "red", :c 35})
+    
     clj-sql-pred.core> (filter (sql-pred "c > 19 or c < 50" :keywordize-keys? true) coll)
     ({:a "clouds", :c 20} {:a "trains", :b "red", :c 35})
+    
     clj-sql-pred.core> (filter (sql-pred "a = clouds" :keywordize-keys? true) coll)
     ({:a "clouds", :c 20})
+    
     clj-sql-pred.core> (filter (sql-pred "a in (clouds, trains, bikes, rocks)" :keywordize-keys? true) coll)
     ({:a "clouds", :c 20} {:a "trains", :b "red", :c 35})
+    
     clj-sql-pred.core> (filter (sql-pred "a not in (clouds, bikes, rocks)" :keywordize-keys? true) coll)
     ({:a "trains", :b "red", :c 35})
+    
     clj-sql-pred.core> (filter (sql-pred "a not in (clouds, bikes, rocks) or c = 20" :keywordize-keys? true) coll)
     ({:a "clouds", :c 20} {:a "trains", :b "red", :c 35})
+    
     clj-sql-pred.core> (filter (sql-pred "c not = 20" :keywordize-keys? true) coll)
     ({:a "trains", :b "red", :c 35})
 

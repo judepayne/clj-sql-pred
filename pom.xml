@@ -17,7 +17,7 @@
     <url>https://github.com/judepayne/clj-sql-pred</url>
     <connection>scm:git:git://github.com/judepayne/clj-sql-pred.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/judepayne/clj-sql-pred.git</developerConnection>
-    <tag>62f1cdf3b7132b7d598d310f73288ac527c39070</tag>
+    <tag>95532b7575ee28762f65798fe108d13dd20b6eba</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>

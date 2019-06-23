@@ -113,8 +113,8 @@
   (if (and skip? (not (contains? item k)))
     true               ;; skip. return true
     (if not?
-      (every? true? (map #(equality-match? k % true item) vs))
-      (some? (some true? (map #(equality-match? k % false item) vs))))))
+      (every? true? (map #(equality-match? k % true skip? item) vs))
+      (some? (some true? (map #(equality-match? k % false skip? item) vs))))))
 
 
 (defn- clause-matches?

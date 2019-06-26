@@ -51,6 +51,31 @@ The `keywordize-keys?` optional boolean argument determines whether the keywords
 
 The `skip-missing?` optional boolean argument determines what happens when a map in your collection does not contain the key being filtered on. A value of true will mean that if the map doesn't contain the key being filtered for that the map will pass successfully and not be filtered. A value of false will mean that the filtered is applied to the map, but without the key, the fetch of the key's value will return nil and unless your term is looking for nils it will be filtered.
 
+#### Special cases
+
+1) Strings with spaces
+
+If one of the strings to be filtered contains spaces, e.g.
+
+    (def coll [{:a "the clouds" :c 20} {:a "trains" :b "red" :c 35}])
+    
+To get a macth your sql-pred must be quoted with single quotes, e.g.
+
+    clj-sql-pred.core> (filter (sql-pred "a = 'the clouds'" :keywordize-keys? true) coll)
+    ({:a "clouds", :c 20})
+    
+2) Match anything
+
+Sometimes you want a particular key in one of your to be tested maps to always pass a match test.
+This is where the special value "<all>" comes in. For example.
+
+    (def coll [{:a "the clouds" :c "<all>"} {:a "trains" :b "red" :c 35}])
+    
+     clj-sql-pred.core> (filter (sql-pred "c = 0" :keywordize-keys? true) coll)
+    ({:a "clouds", :c "<all>"})
+
+
+
 ### License
 
 MIT

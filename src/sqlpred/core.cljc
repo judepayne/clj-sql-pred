@@ -25,14 +25,19 @@
    term = Word
    Op-S = '='|'not ='|'>'|'>='|'<'|'<='
    Op-M = ' in ' | ' not in '
-   value = Word
+   value = Word | QuotedWord
    list = <'('> value (<','> value)* <')'>
-   <Word> = #'[a-zA-Z0-9]*'"))
+   <Word> = #'([a-zA-Z0-9]*)'
+   QuotedWord = #\"'([^']*?)'\""))  ;; fix this
 
 
 (defparser ^{:private true} filter-parser
   filter-grammar
   :auto-whitespace whitespace)
+
+
+(defn drop-first-last [s]
+  (apply str (rest (drop-last s))))
 
 
 (defn- filter-transform [parsed keywordize-keys?]
@@ -43,6 +48,8 @@
     :Op-M (fn [arg] [:op (str/trim arg)])
     :term (fn [arg] [:term (if keywordize-keys? (keyword arg) arg)])
     :list (fn [& args] [:value (map second args)])
+    :QuotedWord (fn [arg] (drop-first-last arg))
+    :value (fn [arg] [:value (str/trim arg)])
     :Clause (fn [& args] (into {} args))}
    parsed))
 
@@ -117,12 +124,19 @@
       (some? (some true? (map #(equality-match? k % false skip? item) vs))))))
 
 
+(defn- match-anything? [clause item]
+  "If the value of the item is the special char then matching always succeeds."
+  (some #(= (get item (:term clause)) %)
+        ["<all>"]))
+
+
 (defn- clause-matches?
   [clause skip? item]
   (let [op   (:op clause)
         term (:term clause)
         val  (:value clause)]
     (cond
+      (match-anything? clause item)    true
       (= "=" op)       (equality-match? term val false skip? item)
       (= "not =" op)   (equality-match? term val true skip? item)
       (or (= ">" op)

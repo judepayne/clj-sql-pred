@@ -3,7 +3,7 @@
   <groupId>clj-sql-pred</groupId>
   <artifactId>clj-sql-pred</artifactId>
   <packaging>jar</packaging>
-  <version>0.1.4</version>
+  <version>0.1.6</version>
   <name>clj-sql-pred</name>
   <description>Convert simple sql statements to predicates for filtering collections of Clojure/ Clojurescript maps</description>
   <url>https://github.com/judepayne/clj-sql-pred</url>
@@ -17,7 +17,7 @@
     <url>https://github.com/judepayne/clj-sql-pred</url>
     <connection>scm:git:git://github.com/judepayne/clj-sql-pred.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/judepayne/clj-sql-pred.git</developerConnection>
-    <tag>7844920f4f9a7bf9ce5e61341d4932575ccb7ddd</tag>
+    <tag>fc18d036ab9ab04abe383ff4b48ccb26444afa19</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>

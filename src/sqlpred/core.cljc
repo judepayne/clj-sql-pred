@@ -27,8 +27,8 @@
    Op-M = ' in ' | ' not in '
    value = Word | QuotedWord
    list = <'('> value (<','> value)* <')'>
-   <Word> = #'([a-zA-Z0-9]*)'
-   QuotedWord = #\"'([^']*?)'\""))  ;; fix this
+   <Word> = #'([a-zA-Z0-9\\(\\)-\\.]*)'
+   QuotedWord = #\"'([^']*?)'\""))
 
 
 (defparser ^{:private true} filter-parser

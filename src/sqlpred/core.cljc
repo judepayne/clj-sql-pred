@@ -27,7 +27,7 @@
    Op-M = ' in ' | ' not in '
    value = Word | QuotedWord
    list = <'('> value (<','> value)* <')'>
-   <Word> = #'([a-zA-Z0-9\\(\\)-\\.]*)'
+   <Word> = #'(^(?!\\()[a-zA-Z0-9-\\.]*)'
    QuotedWord = #\"'([^']*?)'\""))
 
 
